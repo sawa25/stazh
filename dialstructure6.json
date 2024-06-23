@@ -86,7 +86,29 @@
           "merge": "common_order_process"
         }
       },
-      "help": {
+      
+	    "repair": {
+        "description": "Вопрос клиента касаемый ремонта",
+        "branching": ["repair_cost", "repair_status"],
+		"repair_cost":{
+			"description": "Вопрос клиента касаемый стоимости ремонта",
+		},
+		"repair_status":{
+			"description": "Вопрос клиента касаемый статуса/состояния ремонта",
+			"task": "Уточняем модель устройства и куда сдавали или номер приема в ремонте",
+			"Ориентируем клиента на ожидание звонка из магазина "
+		}
+
+        "steps": [
+          {
+            "agent_action": "",
+            "client_action": ""
+          }
+        ],
+        "branching": ["can_help", "cant_help"],
+		},
+	  
+	  "help": {
         "description": "Вопрос клиента касаемый помощи",
         "task": "Оказание теоретической помощи клиенту",
         "steps": [
