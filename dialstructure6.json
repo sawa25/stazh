@@ -1,0 +1,233 @@
+{
+    "root": {
+      "description": "Входящий звонок клиента. Начало диалога.",
+      "task": "Выявление первичной потребности клиента",
+      "steps": [
+        {
+          "agent_action": "Добрый день, меня зовут ......, какой у Вас вопрос?",
+          "client_action": "Скажите, пожалуйста,......"
+        }
+      ],
+      "branching": ["availability","consultation",  "help", "store_info", "reservation", "repair", "other"],
+      "consultation": {
+        "description": "Клиента интересует консультация по товару",
+        "task": "Осуществляем краткосрочную консультацию по товару",
+        "steps": [
+          {
+            "agent_action": "",
+            "client_action": ""
+          }
+        ],
+        "branching": ["instock", "emptystock", "toorder"],
+        "instock": {
+          "description": "Товар есть в наличии",
+          "task": "",
+          "steps": [
+            {
+              "agent_action": "",
+              "client_action": ""
+            }
+          ],
+          "merge": "common_order_process"
+        },
+        "emptystock": {
+          "description": "Товар кончился на складе, уже заказывали, знаем условия заказа",
+          "task": "Ориентируем клиента по срокам и конечной стоимости",
+          "steps": [
+            {
+              "agent_action": "",
+              "client_action": ""
+            }
+          ],
+          "merge": "common_order_process"
+        },
+        "toorder": {
+          "description": "Товар, который мы можем заказать",
+          "task": "Ориентируем клиента по срокам и конечной стоимости",
+          "steps": [
+            {
+              "agent_action": "",
+              "client_action": ""
+            }
+          ],
+          "merge": "common_order_process"
+        }
+      },
+      "availability": {
+        "description": "Вопрос клиента по наличию товара",
+        "task": "",
+        "steps": [
+          {
+            "agent_action": "",
+            "client_action": ""
+          }
+        ],
+        "branching": ["instock", "emptystock"],
+        "instock": {
+          "description": "Товар есть в наличии",
+          "task": "Предоставление актуальной информации по товару и где он находится",
+          "steps": [
+            {
+              "agent_action": "",
+              "client_action": ""
+            }
+          ],
+          "merge": "common_order_process"
+        },
+        "emptystock": {
+          "description": "Товара нет в наличии, можем привезти",
+          "task": "Предоставление актуальной информации по товару и срокам привоза",
+          "steps": [
+            {
+              "agent_action": "",
+              "client_action": ""
+            }
+          ],
+          "merge": "common_order_process"
+        }
+      },
+      "help": {
+        "description": "Вопрос клиента касаемый помощи",
+        "task": "Оказание теоретической помощи клиенту",
+        "steps": [
+          {
+            "agent_action": "",
+            "client_action": ""
+          }
+        ],
+        "branching": ["can_help", "cant_help"],
+        "can_help": {
+          "description": "Оказание помощи оценивается успешно",
+          "task": "",
+          "steps": [
+            {
+              "agent_action": "",
+              "client_action": ""
+            }
+          ],
+          "merge": "final_greeting"
+        },
+        "cant_help": {
+          "description": "Оказание помощи оценивается неудовлетворительно",
+          "task": "Стараемся решить ситуацию на месте получая информацию из интернета, внутри офиса",
+          "steps": [
+            {
+              "agent_action": "",
+              "client_action": ""
+            }
+          ],
+          "branching": ["problem_solved", "cant_solved"],
+          "problem_solved": {
+            "description": "Проблема решена успешно внутри офиса",
+            "task": "",
+            "steps": [
+              {
+                "agent_action": "",
+                "client_action": ""
+              }
+            ],
+            "merge": "final_greeting"
+          },
+          "cant_solved": {
+            "description": "Проблема не может быть решена успешно внутри офиса",
+            "task": "Уточняем у магазинов возможность помощи клиенту",
+            "steps": [
+              {
+                "agent_action": "",
+                "client_action": ""
+              }
+            ],
+            "branching": ["filial_accept", "filial_reject"],
+            "filial_accept": {
+              "description": "У магазинов есть возможность помощи клиенту",
+              "task": "Отправляем клиента в магазин, предупредив управляющего",
+              "steps": [
+                {
+                  "agent_action": "",
+                  "client_action": ""
+                }
+              ],
+              "merge": "final_greeting"
+            },
+            "filial_reject": {
+              "description": "У магазинов нет возможности помощи клиенту",
+              "task": "Объясняем клиенту о невозможности помощи и даем рекомендацию",
+              "steps": [
+                {
+                  "agent_action": "",
+                  "client_action": ""
+                }
+              ],
+              "merge": "final_greeting"
+            }
+          }
+        }
+      }
+    },
+    "common_order_process": {
+      "task": "Предложение оформления заказа",
+      "description": "Диалог подошел к стадии предложения оформления заказа",
+      "steps": [
+        {
+          "agent_action": "",
+          "client_action": ""
+        }
+      ],
+      "branching": ["yes", "no", "not_sure"],
+      "yes": {
+        "merge": "yes_order"
+      },
+      "no": {
+        "merge": "no_order"
+      },
+      "not_sure": {
+        "description": "Клиент сомневается и не может решиться на оформление товара",
+        "task": "Борьба с возражениями клиента",
+        "steps": [
+          {
+            "agent_action": "",
+            "client_action": ""
+          }
+        ],
+        "branching": ["yes", "no"],
+        "yes": {
+          "merge": "yes_order"
+        },
+        "no": {
+          "merge": "no_order"
+        }
+      }
+    },
+    "yes_order": {
+      "task": "Запрашиваем информацию о клиенте (ФИО, номер телефона) и ориентируем, где можно забрать товар",
+      "description": "Клиент согласился на оформление товара",
+      "steps": [
+        {
+          "agent_action": "",
+          "client_action": ""
+        }
+      ],
+      "merge": "final_greeting"
+    },
+    "no_order": {
+      "task": "",
+      "description": "Клиент не согласился на оформление товара",
+      "steps": [
+        {
+          "agent_action": "",
+          "client_action": ""
+        }
+      ],
+      "merge": "final_greeting"
+    },
+    "final_greeting": {
+      "task": "Прощание с клиентом.Клиент прощается с менеджером.",
+      "description": "Завершение разговора.",
+      "steps": [
+        {
+          "agent_action": "",
+          "client_action": ""
+        }
+      ]
+    }
+}
