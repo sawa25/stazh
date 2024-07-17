@@ -1,0 +1,95 @@
+{
+  "project_name": "Safety Monitoring System",
+  "client_info": {
+    "name": "Клиент",
+    "position": "Руководитель отдела безопасности",
+    "company": "Завод по производству бетонных блоков"
+  },
+  "project_requirements": {
+    "monitoring_zones": "Все зоны завода, где требуется ношение касок и зоны, размеченные краской на полу",
+    "camera_details": {
+      "total_cameras": 100,
+      "resolution": "640x480",
+      "framerate": "30fps",
+      "access_method": "Axis Camera Station Service"
+    },
+    "monitoring_intervals": "Круглосуточно",
+    "violation_criteria": [
+      "Отсутствие каски",
+      "Нахождение в запрещенной зоне"
+    ],
+    "current_violation_detection": "Визуально",
+    "critical_zones": "Все зоны, где установлены камеры",
+    "notification_methods": [
+      "SMS",
+      "Telegram"
+    ],
+    "data_to_record": [
+      "Время нарушения",
+      "Тип нарушения",
+      "Фото нарушения"
+    ],
+    "additional_requirements": "Нет"
+  },
+  "technical_details": {
+    "video_codec": "MPEG-4",
+    "resolution": "640x480",
+    "framerate": "30fps"
+  },
+  "development_plan": [
+    {
+      "step": 1,
+      "description": "Уточнение требований к системе безопасности",
+      "status": "completed",
+      "timestamp": "2024-07-15T10:00:00Z"
+    },
+    {
+      "step": 2,
+      "description": "Подтверждение характеристик камер",
+      "status": "in_progress",
+      "timestamp": "2024-07-15T10:30:00Z"
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": 1,
+      "assigned_to": "Агент-разработчик",
+      "description": "Подключение к видеопотокам камер",
+      "status": "pending"
+    },
+    {
+      "task_id": 2,
+      "assigned_to": "Агент-консультант",
+      "description": "Подтверждение параметров видеопотоков",
+      "status": "in_progress"
+    },
+    {
+      "task_id": 3,
+      "assigned_to": "Агент-разработчик",
+      "description": "Исследование способов подключения к камерам с известным IP",
+      "status": "completed",
+      "timestamp": "2024-07-15T11:00:00Z"
+    }
+  ],
+  "code_blocks": [
+    {
+      "code_id": 1,
+      "description": "Подключение к камере по RTSP",
+      "code_request": "Python code to connect to RTSP stream with OpenCV",
+      "status": "rejected",
+      "reason": "Работает, но требуется более стабильное решение"
+    },
+    {
+      "code_id": 2,
+      "description": "Подключение к камере по HTTP",
+      "code_request": "Python code to connect to HTTP stream with OpenCV",
+      "status": "pending"
+    }
+  ],
+  "connection_methods": [
+    "RTSP",
+    "HTTP/HTTPS",
+    "SDK (Axis Camera Station)",
+    "ONVIF"
+  ]
+}
